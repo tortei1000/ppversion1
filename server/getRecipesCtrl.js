@@ -3,8 +3,24 @@
 module.exports = {
   getRecipes : (req, res) => {
     const dbInstance = req.app.get('db')
-
-    dbInstance.getRecipes().then((recipes)=>res.status(200).send(recipes))
-    .catch((err)=>{res.status(500).send(console.log(err))})
+    
+    let fullRecipe = null
+    let recipe = null
+    let ingredient = null
+    
+    dbInstance.getRecipes().then((recipes)=>{
+       recipe = recipes
+       console.log("recipe", recipe)
+       
+    })
+    dbInstance.getIngredients().then((ingredients)=>{
+      ingredient = ingredients
+      fullRecipe = {recipe, ingredient}
+      
+      
+    })
+    setTimeout(()=>{
+      
+    }, 1000)
   }
 }
